@@ -84,3 +84,11 @@ Board.prototype.makeVoid = function(i,j)
 };
 
 
+
+Board.prototype.isVoid = function(i,j)
+{
+	if(i<this.rows && i>=0 && j<this.cols && j>=0)
+		return !this.massArr[i][j];
+	else
+		return false;
+};

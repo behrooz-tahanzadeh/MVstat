@@ -13,8 +13,12 @@
 	
 	<script type='text/javascript' src='assets/js/jquery.min.js'></script>
 	<script type='text/javascript' src='assets/js/Keyboard.js'></script>
+	<script type='text/javascript' src='assets/js/Cell.js'></script>
 	<script type='text/javascript' src='assets/js/GV.js'></script>
 	<script type='text/javascript' src='assets/js/Board.js'></script>
+	<script type='text/javascript' src='assets/js/Flag.js'></script>
+	<script type='text/javascript' src='assets/js/Walker.js'></script>
+	<script type='text/javascript' src='assets/js/PathFinder.js'></script>
 	<script type='text/javascript' src='assets/js/Main.js'></script>
 	
 </head>
@@ -32,6 +36,12 @@
 		
 		<label for="toolVoid">Void</label>
 		<input type="radio" name="tool" value="void" id="toolVoid" onchange="GV.Tool = this.value">
+		
+		<label for="toolFlag">Flag</label>
+		<input type="radio" name="tool" value="flag" id="toolFlag" onchange="GV.Tool = this.value">
+		
+		<label for="toolWalker">Walker</label>
+		<input type="radio" name="tool" value="walker" id="toolWalker" onchange="GV.Tool = this.value">
 	</div>
 	
 	<div>

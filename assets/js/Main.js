@@ -17,33 +17,6 @@ Main =
 	
 	
 	
-	windowOnKeyDown: function(e)
-	{
-		switch (e.keyCode)
-		{
-		case Keyboard.Right:
-			var v = parseFloat(jQuery('input#tail').val())+(e.shiftKey?0.1:0.01);
-			jQuery('input#tail').val(v);
-			Main.tailChange(null);
-			
-			break;
-			
-		case Keyboard.Left:
-			var v = parseFloat(jQuery('input#tail').val())-(e.shiftKey?0.1:0.01);
-			jQuery('input#tail').val(v);
-			Main.tailChange(null);
-			
-			break;
-			
-		case Keyboard.Space:
-			Main.pp();
-			break;
-		
-		default:
-			console.log(e.keyCode);
-		}
-	},
-	
 	runTool: function(i,j)
 	{
 		switch (GV.Tool)
@@ -54,6 +27,14 @@ Main =
 			
 		case 'mass':
 			GV.Board.makeMass(i,j);
+			break;
+			
+		case 'flag':
+			new Flag(i,j).draw();
+			break;
+			
+		case 'walker':
+			new Walker(i,j).draw();
 			break;
 
 		default:
