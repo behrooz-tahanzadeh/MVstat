@@ -95,14 +95,20 @@ Cell.prototype.stepTo = function(d, ortho)
 		var di = d.i - this.i;
 		var dj = d.j - this.j;
 		
+		var result = [];
+		
 		if(Math.abs(di)>=Math.abs(dj))
 		{
-			return di>=0 ? Cell.Bottom : Cell.Top;
+			result[0] =  di>=0 ? Cell.Bottom : Cell.Top;
+			result[1] =  dj>=0 ? Cell.Right : Cell.Left;
 		}
 		else
 		{
-			return dj>=0 ? Cell.Right : Cell.Left;
+			result[1] =  di>=0 ? Cell.Bottom : Cell.Top;
+			result[0] =  dj>=0 ? Cell.Right : Cell.Left;
 		}
+		
+		return result;
 	}
 };
 
@@ -110,4 +116,23 @@ Cell.prototype.stepTo = function(d, ortho)
 Cell.prototype.setBy = function(c)
 {
 	this.set(c.i, c.j);
+};
+
+
+Cell.directionLoop = function(start)
+{
+	var d = [Cell.Bottom, Cell.Right, Cell.Top, Cell.Left];
+	
+	var o = [];
+	
+	for(var i=start; i<4; ++i)
+	{
+		o.push(d[i]);
+	}
+	for(var i=0; i<start; ++i)
+	{
+		o.push(d[i]);
+	}
+	
+	return o;
 };

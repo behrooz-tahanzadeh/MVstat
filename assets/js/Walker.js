@@ -13,7 +13,7 @@ Walker.List = [];
 
 Walker.DrawAll = function()
 {
-	for (var i in Flag.List)
+	for (var i in Walker.List)
 		Walker.List[i].draw();
 };
 
@@ -23,6 +23,8 @@ Walker.DrawAll = function()
 Walker.prototype.draw = function()
 {
 	var ctx = GV.Ctx;
+	
+	ctx.beginPath();
 	
 	ctx.strokeStyle = 'orange';
 	ctx.lineWidth = 5;

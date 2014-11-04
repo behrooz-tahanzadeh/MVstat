@@ -5,6 +5,8 @@ function PathFinder(w,f)
 	
 	this.path = [this.walker.clone()];
 	this.step = new Cell(0,0);
+	this.preStep = new Cell(0,0);
+	this.frontIndex = 0;
 }
 
 
@@ -12,16 +14,10 @@ function PathFinder(w,f)
 
 PathFinder.prototype.run = function()
 {
-	setInterval(this.loop, 100, this);
-};
-
-
-PathFinder.prototype.loop = function(that)
-{
-	if(that.setStep())	
+	while(this.setStep())	
 	{
-		that.takeStep();
-		that.draw();
+		this.takeStep();
+		this.draw();
 	}
 };
 
@@ -55,7 +51,7 @@ PathFinder.prototype.isStepTakenBefore = function(step)
 
 
 PathFinder.prototype.setStep = function()
-{
+{	
 	if(this.pointer().equal(this.flag))
 	{
 		return false;
@@ -63,11 +59,19 @@ PathFinder.prototype.setStep = function()
 	
 	var s = this.pointer().stepTo(this.flag, true);
 	
-	var steps = [s, Cell.Bottom, Cell.Right, Cell.Top, Cell.Left];
+	var d = Cell.directionLoop(this.frontIndex);
+	
+	var steps = [s[0], s[1], d[0], d[1], d[2], d[3]];
 	
 	for(var i in steps)
 		if(this.canTakeStep(steps[i]) && !this.isStepTakenBefore(steps[i]))
 		{
+			if(i<2)
+				this.frontIndex = 0;
+			else
+				this.frontIndex = i-2;
+			
+			this.preStep.setBy(this.step);
 			this.step.setBy(steps[i]);
 			break;
 		}

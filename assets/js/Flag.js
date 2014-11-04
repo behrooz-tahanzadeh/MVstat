@@ -21,6 +21,8 @@ Flag.prototype.draw = function()
 {
 	var ctx = GV.Ctx;
 	
+	ctx.beginPath();
+	
 	ctx.fillStyle = 'red';
 	
 	var x = (this.j*GV.Board.width)+GV.Board.width/2;

@@ -59,6 +59,23 @@ Main =
 			
 			Main.runTool(i,j);
 		}
+	},
+	
+	runBtnOnClick: function()
+	{
+		for(var i in Walker.List)
+			for(var j in Flag.List)
+				new PathFinder(Walker.List[i], Flag.List[j]).run();
+	},
+	
+	clearBtnOnClick: function()
+	{
+		GV.Canvas.width = GV.Canvas.width;
+		
+		GV.Board.draw();
+		
+		Walker.DrawAll();
+		Flag.DrawAll();
 	}
 	
 };//eo Main{}
